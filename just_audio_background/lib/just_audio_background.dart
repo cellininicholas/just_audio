@@ -253,6 +253,10 @@ class _JustAudioPlayer extends AudioPlayerPlatform {
       _playerAudioHandler.customSetVolume(request);
 
   @override
+  Future<SetPanResponse> setPan(SetPanRequest request) =>
+      _playerAudioHandler.customSetPan(request);
+
+  @override
   Future<SetSpeedResponse> setSpeed(SetSpeedRequest request) async {
     await _audioHandler.setSpeed(request.speed);
     return SetSpeedResponse();
@@ -425,6 +429,10 @@ class _PlayerAudioHandler extends BaseAudioHandler
 
   Future<SetVolumeResponse> customSetVolume(SetVolumeRequest request) async {
     return await (await _player).setVolume(request);
+  }
+
+  Future<SetPanResponse> customSetPan(SetPanRequest request) async {
+    return await (await _player).setPan(request);
   }
 
   Future<SeekResponse> customPlayerSeek(SeekRequest request) async {

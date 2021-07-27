@@ -907,6 +907,16 @@ class AudioPlayer {
     await (await _platform).setVolume(SetVolumeRequest(volume: volume));
   }
 
+  /// Sets the stereo pan of this player, where...
+  ///    -1.0 is all the way left.
+  ///    0.0 is in the middle.
+  ///    1.0 is all the way right.
+  Future<void> setPan(final double pan) async {
+    if (_disposed) return;
+    _volumeSubject.add(volume);
+    await (await _platform).setPan(SetVolumeRequest(volume: volume));
+  }
+
   /// Sets whether silence should be skipped in audio playback. (Currently
   /// Android only).
   Future<void> setSkipSilenceEnabled(bool enabled) async {
@@ -3078,6 +3088,11 @@ class _IdleAudioPlayer extends AudioPlayerPlatform {
   @override
   Future<SetVolumeResponse> setVolume(SetVolumeRequest request) async {
     return SetVolumeResponse();
+  }
+
+  @override
+  Future<SetPanResponse> setPan(SetPanRequest request) async {
+    return SetPanResponse();
   }
 
   @override

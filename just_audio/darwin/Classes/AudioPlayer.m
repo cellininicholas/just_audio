@@ -44,6 +44,7 @@
     BOOL _playing;
     float _speed;
     float _volume;
+    float _pan;
     BOOL _justAdvanced;
     NSDictionary<NSString *, NSObject *> *_icyMetadata;
 }
@@ -102,6 +103,7 @@
     }
     _speed = 1.0f;
     _volume = 1.0f;
+    _pan = 0.0f;
     _justAdvanced = NO;
     _icyMetadata = @{};
     __weak __typeof__(self) weakSelf = self;
@@ -124,6 +126,9 @@
             result(@{});
         } else if ([@"setVolume" isEqualToString:call.method]) {
             [self setVolume:(float)[request[@"volume"] doubleValue]];
+            result(@{});
+        } else if ([@"setPan" isEqualToString:call.method]) {
+            [self setPan:(float)[request[@"pan"] doubleValue]];
             result(@{});
         } else if ([@"setSkipSilence" isEqualToString:call.method]) {
             /// TODO on iOS side; Seems more involved, so someone with ObjectiveC experience might look at it.
@@ -684,6 +689,7 @@
         _player.rate = _speed;
     }
     [_player setVolume:_volume];
+    [_player setPan:_pan];
     [self broadcastPlaybackEvent];
     /* NSLog(@"load:"); */
     /* for (int i = 0; i < [_indexedAudioSources count]; i++) { */
@@ -1059,6 +1065,14 @@
     _volume = volume;
     if (_player) {
         [_player setVolume:volume];
+    }
+}
+
+- (void)setPan:(float)pan {
+    _pan = pan;
+    if (_player) {
+        NSLog(@"iOS setPan() not implemented");
+        // [_player setPan:pan];
     }
 }
 

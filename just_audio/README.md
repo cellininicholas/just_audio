@@ -131,6 +131,13 @@ await player.setSpeed(2.0); // Double speed
 await player.setVolume(0.5); // Halve volume
 ```
 
+Adjusting pan:
+
+```dart
+await player.setPan(-1); // Full left pan
+await player.setPan(0.5); // Half right pan
+```
+
 Gapless playlists:
 
 ```dart

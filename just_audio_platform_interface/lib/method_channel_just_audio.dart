@@ -70,6 +70,12 @@ class MethodChannelAudioPlayer extends AudioPlayerPlatform {
   }
 
   @override
+  Future<SetPanResponse> setPan(SetPanRequest request) async {
+    return SetPanResponse.fromMap((await _channel
+        .invokeMethod<Map<dynamic, dynamic>>('setPan', request.toMap()))!);
+  }
+
+  @override
   Future<SetSpeedResponse> setSpeed(SetSpeedRequest request) async {
     return SetSpeedResponse.fromMap((await _channel
         .invokeMethod<Map<dynamic, dynamic>>('setSpeed', request.toMap()))!);

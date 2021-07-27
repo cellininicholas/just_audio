@@ -1434,6 +1434,11 @@ class MockAudioPlayer implements AudioPlayerPlatform {
   }
 
   @override
+  Future<SetPanResponse> setPan(SetPanRequest request) async {
+    return SetPanResponse();
+  }
+
+  @override
   Future<DisposeResponse> dispose(DisposeRequest request) async {
     _processingState = ProcessingStateMessage.idle;
     _broadcastPlaybackEvent();

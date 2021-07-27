@@ -405,6 +405,10 @@ public class AudioPlayer implements MethodCallHandler, Player.EventListener, Aud
                 setVolume((float) ((double) ((Double) call.argument("volume"))));
                 result.success(new HashMap<String, Object>());
                 break;
+            case "setPan":
+                setPan((float) ((double) ((Double) call.argument("pan"))));
+                result.success(new HashMap<String, Object>());
+                break;
             case "setSpeed":
                 setSpeed((float) ((double) ((Double) call.argument("speed"))));
                 result.success(new HashMap<String, Object>());
@@ -870,6 +874,11 @@ public class AudioPlayer implements MethodCallHandler, Player.EventListener, Aud
 
     public void setVolume(final float volume) {
         player.setVolume(volume);
+    }
+
+    public void setPan(final float pan) {
+        Log.e(TAG, "setPan() not implemented");
+        // player.setPan(pan);
     }
 
     public void setSpeed(final float speed) {

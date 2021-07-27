@@ -90,6 +90,11 @@ abstract class AudioPlayerPlatform {
     throw UnimplementedError("setVolume() has not been implemented.");
   }
 
+  /// Changes the pan.
+  Future<SetPanResponse> setPan(SetPanRequest request) {
+    throw UnimplementedError("setPan() has not been implemented.");
+  }
+
   /// Changes the playback speed.
   Future<SetSpeedResponse> setSpeed(SetSpeedRequest request) {
     throw UnimplementedError("setSpeed() has not been implemented.");
@@ -489,11 +494,29 @@ class SetVolumeRequest {
       };
 }
 
+/// Information communicated to the platform implementation when setting the
+/// volume.
+class SetPanRequest {
+  final double pan;
+
+  SetPanRequest({required this.pan});
+
+  Map<dynamic, dynamic> toMap() => <dynamic, dynamic>{
+        'pan': pan,
+      };
+}
+
 /// Information returned by the platform implementation after setting the
 /// volume.
 class SetVolumeResponse {
   static SetVolumeResponse fromMap(Map<dynamic, dynamic> map) =>
       SetVolumeResponse();
+}
+
+/// Information returned by the platform implementation after setting the
+/// volume.
+class SetPanResponse {
+  static SetPanResponse fromMap(Map<dynamic, dynamic> map) => SetPanResponse();
 }
 
 /// Information communicated to the platform implementation when setting the

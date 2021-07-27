@@ -269,6 +269,12 @@ class Html5AudioPlayer extends JustAudioPlayer {
   }
 
   @override
+  Future<SetPanResponse> setPan(SetPanRequest request) async {
+    _audioElement.volume = request.pan;
+    return SetPanResponse();
+  }
+
+  @override
   Future<SetSpeedResponse> setSpeed(SetSpeedRequest request) async {
     _audioElement.playbackRate = request.speed;
     return SetSpeedResponse();
